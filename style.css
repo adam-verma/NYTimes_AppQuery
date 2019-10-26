@@ -1,0 +1,16 @@
+* {
+   font-family: 'Be Vietnam', sans-serif;
+   font-family: 'Lora', serif;
+   font-family: 'Mansalva', cursive;
+   font-family: 'Gloria Hallelujah', cursive;
+   }
+.jumbotron {
+   background-color: rgb(99, 99, 128);
+   color: rgb(40, 35, 53);
+   margin-top: 30px;
+}
+.container {
+   width: 1000px;
+   height:900px;
+   background-color: rgb(134, 134, 153);
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>New York Times Machine</title>
+    <meta charset="UTF-8">
+    <title>New york Times</title>
+    <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- css File -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- google font File -->
+    <link href="https://fonts.googleapis.com/css?family=Be+Vietnam%7CGloria+Hallelujah%7CLora%7CMansalva&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        <!-- Overall Bootstrap Grid -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">New York Times Search</h1>
+        </div>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputsearch">Search Terms</label>
+                    <input type="text" class="form-control" id="query">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputState">Numbers of Records to Retrieve</label>
+                    <select id="records" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputCity">Stars Year</label>
+                    <input type="text" class="form-control" id="Startyear">
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="inputCity">End Year (optional)</label>
+                <input type="text" class="form-control" id="Endyear">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary clear">Clear Results</button>
+                <button type="submit" class="btn btn-primary search">Search</button>
+            </div>
+        </form>
+    </div>
+
+    $("button").on("click", function() {
+    // Grabbing and storing the data-animal property value from the button
+    const start_Year = $('.search').attr("#Startyear");
+    const end_Year = $('.search').attr('#Endyear')
+    const anything = $('.search').attr("#query")
+    // Constructing a queryURL using the animal name
+    const queryURL =
+    `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&q=${anything}&begin_date=${start_Year}&end_date=${end_Year}&api-key=dlEqjeceDJB6iR9zKda4V0BywrFbo5Y4`;
+
+    // Performing an AJAX request with the queryURL
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    // After data comes back from the request
+    .then(function(response) {
+    console.log(queryURL);
+
+    console.log(response);
+    // storing the data from the AJAX request in the results variable
+    const results = response.data;
+
+    // Looping through each result item
+    for (let i = 0; i < results.length; i++) { // Creating and storing a div tag const Div=$("<div>");
+
+        // Creating a paragraph tag with the result item's rating
+        const p = $("<p>").text(" " + results[i].);
+
+            // Creating and storing an image tag
+            const Image = $("<img>");
+            // Setting the src attribute of the image to a property pulled off the result item
+            Image.attr("src", results[i].images.fixed_height.url);
+
+            // Appending the paragraph and image tag to the animalDiv
+            Div.append(p);
+            Div.append(Image);
+
+            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+            $("#").prepend(Div);
+        }
+            });
+            });
+    </script>
+</body>
+
+</html>
